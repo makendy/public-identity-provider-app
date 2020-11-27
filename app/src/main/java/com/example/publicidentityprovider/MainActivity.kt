@@ -1,5 +1,6 @@
 package com.example.publicidentityprovider
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -11,7 +12,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         buttonSign_up.setOnClickListener {
-            Toast.makeText(this@MainActivity, "Sign up user", Toast.LENGTH_SHORT).show()
+            val explicitIntent = Intent(this@MainActivity, SignUpActivity::class.java)
+            explicitIntent.putExtra("ID", "TODO")
+            startActivity(explicitIntent)
         }
     }
 }

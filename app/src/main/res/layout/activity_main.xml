@@ -33,11 +33,11 @@
 
     <Button
         android:id="@+id/buttonSign_up"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:text="@string/sign_up"
-        android:background="@color/design_default_color_background"
+        android:background="@drawable/my_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,10 +45,11 @@
 
     <Button
         android:id="@+id/buttonLogin_fingerprint"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/login_fingerprint"
+        android:background="@drawable/my_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

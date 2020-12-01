@@ -48,7 +48,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:importantForAutofill="no"/>
 
     <EditText
         android:id="@+id/textPhoneNumber"
@@ -60,7 +61,8 @@
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:importantForAutofill="no"/>
 
     <EditText
         android:id="@+id/textEmailAddress"
@@ -73,7 +75,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPhoneNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/textPhoneNumber"
+        android:importantForAutofill="no"/>
 
     <EditText
         android:id="@+id/textLastName"
@@ -85,7 +88,8 @@
         android:hint="@string/last_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/textEmailAddress"
+        android:importantForAutofill="no"/>
 
     <EditText
         android:id="@+id/textFirstName"
@@ -97,7 +101,8 @@
         android:hint="@string/first_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textLastName" />
+        app:layout_constraintTop_toBottomOf="@+id/textLastName"
+        android:importantForAutofill="no"/>
 
     <EditText
         android:id="@+id/textBirthDate"
@@ -109,7 +114,8 @@
         android:hint="@string/birth_date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFirstName" />
+        app:layout_constraintTop_toBottomOf="@+id/textFirstName"
+        android:importantForAutofill="no"/>
 
     <Button
         android:id="@+id/buttonSendSignUp"

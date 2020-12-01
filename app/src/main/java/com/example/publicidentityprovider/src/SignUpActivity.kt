@@ -10,6 +10,5 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up)
 
         val originIntent = intent
-        val id = originIntent.getStringExtra("ID")!!
     }
 }

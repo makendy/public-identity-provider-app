@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
 
         buttonSign_up.setOnClickListener {
             val explicitIntent = Intent(this@MainActivity, SignUpActivity::class.java)
-            explicitIntent.putExtra("ID", "TODO")
             startActivity(explicitIntent)
         }
     }

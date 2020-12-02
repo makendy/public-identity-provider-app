@@ -29,17 +29,26 @@ class SignUpActivity : AppCompatActivity() {
                                         " // birth date : " + textBirthDate.text)
         }
     }
-
-    private fun regexNumber (phoneNumber: String) : Boolean {
+// ---> Next 4 functions are about regex to test if fields are correctly filled
+    //---> A phone number can only have digits
+    private fun regexNumber (phoneNumber : String) : Boolean {
         return Regex("^[0-9]*$").matches(phoneNumber)
     }
 
+    //---> An email address can only have the format -----@-------.----
     private fun regexEmail (email : String) : Boolean {
         return Regex("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}\$").matches(email)
     }
 
-    private fun regexName (name: String) : Boolean {
+    //---> A name can only have alphabetical characters
+    private fun regexName (name : String) : Boolean {
         return Regex("^[A-Za-z]*$").matches(name)
+    }
+
+    //---> A date can only have the formats DD/MM/YYYY or DD-MM-YYYY
+    private fun regexDate (birthDate : String) : Boolean {
+        return Regex("^(0[1-9]|[12][0-9]|3[01])[- /](0[1-9]|1[012])[- /](19|20)\\d\\d\$")
+                .matches(birthDate)
     }
 
     private fun verificationNumber (phoneNumber: String) : Boolean {
@@ -49,6 +58,7 @@ class SignUpActivity : AppCompatActivity() {
             return false
         }
 
+        //---> For France : 10 or 11 digits for a number
         if (phoneNumber.length != globalFrenchNumberLengthMax
                 || phoneNumber.length != globalFrenchNumberLengthMin) {
             Toast.makeText(this@SignUpActivity, "Incorrect phone number",
@@ -56,9 +66,10 @@ class SignUpActivity : AppCompatActivity() {
             return false
         }
 
+        //---> If the number is like 0- -- -- -- --
         if (phoneNumber[0] == '0' && phoneNumber.length != globalFrenchNumberLengthMin)
             return false
-
+        //---> if the number is like 33 - -- -- -- --
         if (phoneNumber.length == globalFrenchNumberLengthMax) {
             if (phoneNumber[0] != '3' || phoneNumber[1] != '3')
                 return false
@@ -91,6 +102,12 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun verificationBirthDate (birthDate: String) : Boolean {
+        if (!regexDate(birthDate)) {
+            Toast.makeText(this@SignUpActivity, "Incorrect birth date. " +
+                    "Try with the format DD/MM/YYYY",
+                    Toast.LENGTH_SHORT).show()
+            return false
+        }
         return true
     }
 

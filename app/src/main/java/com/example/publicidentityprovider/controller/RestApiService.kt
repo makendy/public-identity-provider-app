@@ -13,8 +13,10 @@ class RestApiService {
                 object : Callback<UserInfo> {
                     override fun onFailure(call: Call<UserInfo>, t: Throwable) {
                         Log.d("POST USER FAILURE", "Impossible to create user")
+                        Log.d("CAUSE", t.message)
                     }
                     override fun onResponse( call: Call<UserInfo>, response: Response<UserInfo>) {
+                        Log.d("POST USER SUCCEEDED", "Maybe user is created !")
                         if (response.code() == 200){
                             if(response.body() != null) {
                                 val addedUser = response.body()

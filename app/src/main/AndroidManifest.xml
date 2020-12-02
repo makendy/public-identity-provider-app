@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PublicIdentityProvider">
         <activity android:name=".src.SignUpActivity"></activity>
-        <activity android:name=".SignupActivity" />
         <activity android:name=".src.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.example.publicidentityprovider.R
+import com.example.publicidentityprovider.controller.RestApiService
+import com.example.publicidentityprovider.details.UserInfo
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity() {
@@ -21,6 +23,9 @@ class SignUpActivity : AppCompatActivity() {
                             textLastName.text.toString(), textFirstName.text.toString(),
                             textBirthDate.text.toString())) {
                 Log.d("SIGN UP OK", "Every field is correct")
+                addUserToDatabase(textPhoneNumber.text.toString(), textEmailAddress.text.toString(),
+                        textLastName.text.toString(), textFirstName.text.toString(),
+                        textBirthDate.text.toString())
             }
             Log.d("SIGN UP", "phone number : " + textPhoneNumber.text +
                                         " // email : " + textEmailAddress.text +
@@ -29,7 +34,8 @@ class SignUpActivity : AppCompatActivity() {
                                         " // birth date : " + textBirthDate.text)
         }
     }
-// ---> Next 4 functions are about regex to test if fields are correctly filled
+
+    // ---> Next 4 functions are about regex to test if fields are correctly filled
     //---> A phone number can only have digits
     private fun regexNumber (phoneNumber : String) : Boolean {
         return Regex("^[0-9]*$").matches(phoneNumber)
@@ -47,7 +53,7 @@ class SignUpActivity : AppCompatActivity() {
 
     //---> A date can only have the formats DD/MM/YYYY or DD-MM-YYYY
     private fun regexDate (birthDate : String) : Boolean {
-        return Regex("^(0[1-9]|[12][0-9]|3[01])[- /](0[1-9]|1[012])[- /](19|20)\\d\\d\$")
+        return Regex("^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])\$")
                 .matches(birthDate)
     }
 
@@ -137,5 +143,24 @@ class SignUpActivity : AppCompatActivity() {
         if (!verificationBirthDate(birthDate))
             return false
         return true
+    }
+
+    //---> Adding user to database
+    private fun addUserToDatabase(msisdn: String, email: String, lastName: String, firstName: String,
+                                  birthDate: String) {
+        val apiService = RestApiService()
+        val userInfo = UserInfo(msisdn = msisdn,
+                                email = email,
+                                lastName = lastName,
+                                firstName = firstName,
+                                birthDate = birthDate)
+
+        apiService.addUser(userInfo) {
+            if (it != null) {
+                Log.d("POST USER SUCCEED", it.toString())
+            } else {
+                Log.d("POST USER FAILURE", "An error has occurred !")
+            }
+        }
     }
 }

@@ -60,19 +60,26 @@ class SignUpActivity : AppCompatActivity() {
 
         //---> For France : 10 or 11 digits for a number
         if (phoneNumber.length != globalFrenchNumberLengthMax
-                || phoneNumber.length != globalFrenchNumberLengthMin) {
+                && phoneNumber.length != globalFrenchNumberLengthMin) {
+            Log.d("PHONE NUMBER", phoneNumber.length.toString())
             Toast.makeText(this@SignUpActivity, "Incorrect phone number",
                     Toast.LENGTH_SHORT).show()
             return false
         }
 
         //---> If the number is like 0- -- -- -- --
-        if (phoneNumber[0] == '0' && phoneNumber.length != globalFrenchNumberLengthMin)
+        if (phoneNumber[0] == '0' && phoneNumber.length != globalFrenchNumberLengthMin) {
+            Toast.makeText(this@SignUpActivity, "Incorrect phone number",
+                    Toast.LENGTH_SHORT).show()
             return false
+        }
         //---> if the number is like 33 - -- -- -- --
         if (phoneNumber.length == globalFrenchNumberLengthMax) {
-            if (phoneNumber[0] != '3' || phoneNumber[1] != '3')
+            if (!(phoneNumber[0] == '3' && phoneNumber[1] == '3')) {
+                Toast.makeText(this@SignUpActivity, "Phone number must begin by 33" +
+                        " or 0", Toast.LENGTH_SHORT).show()
                 return false
+            }
         }
 
         return true

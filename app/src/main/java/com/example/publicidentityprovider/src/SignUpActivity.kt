@@ -8,7 +8,6 @@ import android.widget.Toast
 import com.example.publicidentityprovider.R
 import com.example.publicidentityprovider.controller.RestApiService
 import com.example.publicidentityprovider.details.UserInfo
-import com.example.publicidentityprovider.details.UserPostResponse
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_sign_up.*
 

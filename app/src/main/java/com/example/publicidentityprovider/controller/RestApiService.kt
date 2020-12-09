@@ -2,6 +2,7 @@ package com.example.publicidentityprovider.controller
 
 import android.util.Log
 import com.example.publicidentityprovider.details.UserInfo
+import com.example.publicidentityprovider.details.UserPostResponse
 import com.google.gson.JsonParser
 import org.json.JSONArray
 import org.json.JSONObject
@@ -10,15 +11,15 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class RestApiService {
-    fun addUser(userData: UserInfo, onResult: (UserInfo?) -> Unit){
+    fun addUser(userData: UserInfo, onResult: (UserPostResponse?) -> Unit){
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
         retrofit.addUser(userData).enqueue(
-                object : Callback<UserInfo> {
-                    override fun onFailure(call: Call<UserInfo>, t: Throwable) {
+                object : Callback<UserPostResponse> {
+                    override fun onFailure(call: Call<UserPostResponse>, t: Throwable) {
                         Log.d("POST USER FAILURE", "Impossible to create user")
                         Log.d("CAUSE", t.message)
                     }
-                    override fun onResponse( call: Call<UserInfo>, response: Response<UserInfo>) {
+                    override fun onResponse( call: Call<UserPostResponse>, response: Response<UserPostResponse>) {
                         Log.d("POST USER SUCCEEDED", "Maybe user is created !")
                         if (response.code() == 201){
                             if(response.body() != null) {

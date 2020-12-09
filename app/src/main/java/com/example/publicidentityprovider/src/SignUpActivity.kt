@@ -157,7 +157,7 @@ class SignUpActivity : AppCompatActivity() {
 
         apiService.addUser(userInfo) {
             if (it != null) {
-                Log.d("POST USER SUCCEED", it.toString())
+                Log.d("POST USER SUCCEED", it.userToken)
             } else {
                 Log.d("POST USER FAILURE", "An error has occurred !")
             }

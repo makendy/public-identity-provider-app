@@ -1,5 +1,6 @@
 package com.example.publicidentityprovider.src
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,8 @@ import android.widget.Toast
 import com.example.publicidentityprovider.R
 import com.example.publicidentityprovider.controller.RestApiService
 import com.example.publicidentityprovider.details.UserInfo
+import com.example.publicidentityprovider.details.UserPostResponse
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity() {
@@ -157,10 +160,18 @@ class SignUpActivity : AppCompatActivity() {
 
         apiService.addUser(userInfo) {
             if (it != null) {
-                Log.d("POST USER SUCCEED", it.userToken)
+                val itJsonString = Gson().toJson(it)
+                Log.d("POST USER SUCCEED", itJsonString.toString())
+                goToNextActivity(itJsonString)
             } else {
                 Log.d("POST USER FAILURE", "An error has occurred !")
             }
         }
+    }
+
+    private fun goToNextActivity(userCreated : String) {
+        val explicitIntent = Intent(this@SignUpActivity, UserHomeActivity::class.java)
+        explicitIntent.putExtra("USER_DATA", userCreated)
+        startActivity(explicitIntent)
     }
 }

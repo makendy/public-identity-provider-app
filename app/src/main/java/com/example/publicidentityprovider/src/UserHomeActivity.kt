@@ -18,6 +18,7 @@ class UserHomeActivity : AppCompatActivity() {
         Log.d("HOME USER ACTVT DATA : ", userdata)
     }
 
+    //---> Prevent activity from going back to previous activities and quit app
     override fun onBackPressed() {
         finishAffinity()
     }

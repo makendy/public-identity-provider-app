@@ -168,7 +168,7 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
-
+    //---> Start next activity
     private fun goToNextActivity(userCreated : String) {
         val explicitIntent = Intent(this@SignUpActivity, UserHomeActivity::class.java)
         explicitIntent.putExtra("USER_DATA", userCreated)

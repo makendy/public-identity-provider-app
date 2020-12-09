@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        //Launch Sign up Activity on button pressed
         buttonSign_up.setOnClickListener {
             val explicitIntent = Intent(this@MainActivity, SignUpActivity::class.java)
             startActivity(explicitIntent)

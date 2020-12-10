@@ -6,7 +6,6 @@ import android.util.Log
 import com.example.publicidentityprovider.R
 import com.example.publicidentityprovider.controller.RestApiService
 import com.example.publicidentityprovider.details.AppInfo
-import com.example.publicidentityprovider.details.UserInfo
 import com.google.gson.Gson
 
 class WaitingListActivity : AppCompatActivity() {
@@ -22,6 +21,10 @@ class WaitingListActivity : AppCompatActivity() {
         getWaitingAppList(userToken)
     }
 
+    private fun displayAppListInfo(listOfApp : List<AppInfo>) {
+
+    }
+
     private fun getWaitingAppList(userToken : String) {
         val apiService = RestApiService()
 
@@ -29,8 +32,7 @@ class WaitingListActivity : AppCompatActivity() {
             if (it != null) {
                 val itJsonString = Gson().toJson(it)
                 Log.d("GET APP INFO SUCCEED", itJsonString.toString())
-                //var listAppData = Gson().fromJson(itJsonString, List<AppInfo::class.java>)
-                //displayUserInfo(userData, userToken)
+                displayAppListInfo(it)
             } else {
                 Log.d("GET APP INFO FAILURE", "An error has occurred !")
             }

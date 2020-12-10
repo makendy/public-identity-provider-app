@@ -8,9 +8,12 @@
     <string name="first_name">Enter first name</string>
     <string name="birth_date">Birth date YYYY-MM-DD</string>
     <string name="send_button">SEND</string>
-    <string name="display_last_name">Last name :</string>
-    <string name="display_first_name">First name :</string>
-    <string name="display_phone_number">Phone number :</string>
-    <string name="display_email">Email :</string>
-    <string name="display_birthDate">Birth date :</string>
+    <string name="display_last_name">Last name</string>
+    <string name="display_first_name">First name</string>
+    <string name="display_phone_number">Phone number</string>
+    <string name="display_email">Email</string>
+    <string name="display_birthDate">Birth date</string>
+    <string name="display_auth">DISPLAY AUTHORIZED APPS</string>
+    <string name="display_waiting">DISPLAY WAITING AUTHORIZATION</string>
+    <string name="textView">TextView</string>
 </resources>

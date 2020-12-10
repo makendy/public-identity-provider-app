@@ -9,27 +9,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.publicidentityprovider.details.AppInfo
 import com.example.publicidentityprovider.R
 
-class WaitingAppListAdapter (private val data : List<AppInfo>,
-                            private val context : Context,
-                            private val onItemClickListener: View.OnClickListener) :
-                            RecyclerView.Adapter<WaitingAppListAdapter.ViewHolder>(){
+class AppListAdapter (private val data : List<AppInfo>,
+                      private val context : Context,
+                      private val onItemClickListener: View.OnClickListener) :
+                            RecyclerView.Adapter<AppListAdapter.ViewHolder>(){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // retrieve the item at the specified position
         val currentItem = data[position]
         // put the data
-        holder!!.waitingAppName.text =  "App name : "+ currentItem.appName
-        holder!!.waitingAppDate.text = "Date : " + currentItem.date
-        holder!!.waitingAppScope.text =  "Authorizations : " + currentItem.scopes.toString()
+        holder!!.appName.text =  "App name : "+ currentItem.appName
+        holder!!.appDate.text = "Date : " + currentItem.date
+        holder!!.appScope.text =  "Authorizations : " + currentItem.scopes.toString()
                                                 .replace("[", "")
                                                 .replace("]", "")
         holder.itemView.tag = position
     }
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        val waitingAppName : TextView = itemView.findViewById(R.id.waiting_activity_app_name)
-        val waitingAppDate : TextView = itemView.findViewById(R.id.waiting_activity_app_date)
-        val waitingAppScope : TextView =  itemView.findViewById(R.id.waiting_activity_scope)
+        val appName : TextView = itemView.findViewById(R.id.activity_app_name)
+        val appDate : TextView = itemView.findViewById(R.id.activity_app_date)
+        val appScope : TextView =  itemView.findViewById(R.id.activity_scope)
     }
 
     // called when a new viewholder is required to display a row

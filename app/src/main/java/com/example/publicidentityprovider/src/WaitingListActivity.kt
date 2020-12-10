@@ -1,6 +1,5 @@
 package com.example.publicidentityprovider.src
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +8,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.publicidentityprovider.R
-import com.example.publicidentityprovider.adapter.WaitingAppListAdapter
+import com.example.publicidentityprovider.adapter.AppListAdapter
 import com.example.publicidentityprovider.controller.RestApiService
 import com.example.publicidentityprovider.details.AppInfo
 import com.google.gson.Gson
@@ -60,7 +59,7 @@ class WaitingListActivity : AppCompatActivity() {
             //startActivity(explicitIntent)
         }
         // attach an adapter and provide some data
-        val recyclerAdapter = WaitingAppListAdapter(listOfApp,this@WaitingListActivity,
+        val recyclerAdapter = AppListAdapter(listOfApp,this@WaitingListActivity,
                                                         myAppClickListener)
         RecyclerListApp.adapter = recyclerAdapter
     }

@@ -18,9 +18,11 @@ class WaitingAppListAdapter (private val data : List<AppInfo>,
         // retrieve the item at the specified position
         val currentItem = data[position]
         // put the data
-        holder!!.waitingAppName.text = currentItem.appName
-        holder!!.waitingAppDate.text = currentItem.date
-        holder.waitingAppScope.text = currentItem.scopes.toString()
+        holder!!.waitingAppName.text =  "App name : "+ currentItem.appName
+        holder!!.waitingAppDate.text = "Date : " + currentItem.date
+        holder!!.waitingAppScope.text =  "Authorizations : " + currentItem.scopes.toString()
+                                                .replace("[", "")
+                                                .replace("]", "")
         holder.itemView.tag = position
     }
 

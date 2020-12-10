@@ -16,7 +16,4 @@
     <string name="display_auth">DISPLAY AUTHORIZED APPS</string>
     <string name="display_waiting">DISPLAY WAITING AUTHORIZATION</string>
     <string name="textView">TextView</string>
-    <string name="waiting_activity_app_date">Date</string>
-    <string name="waiting_activity_app_name">App Name</string>
-    <string name="waiting_activity_app_scopes"> Authorizations</string>
 </resources>

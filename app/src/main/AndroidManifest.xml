@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PublicIdentityProvider"
         android:usesCleartextTraffic="true">
-        <activity android:name=".src.WaitingListActivity"></activity>
+        <activity android:name=".src.AllowedListActivity"></activity>
+        <activity android:name=".AllowedListActivity" />
+        <activity android:name=".src.WaitingListActivity" />
         <activity android:name=".src.UserHomeActivity" />
         <activity android:name=".src.SignUpActivity" />
         <activity android:name=".src.MainActivity">

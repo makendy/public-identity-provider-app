@@ -1,6 +1,7 @@
 package com.example.publicidentityprovider.controller
 
 import android.util.Log
+import com.example.publicidentityprovider.details.AppInfo
 import com.example.publicidentityprovider.details.UserInfo
 import com.example.publicidentityprovider.details.UserPostResponse
 import retrofit2.Call
@@ -46,6 +47,31 @@ class RestApiService {
                     if (response.code() == 200){
                         if(response.body() != null) {
                             val addedUser = response.body()
+                            onResult(addedUser)
+                        }
+                    }
+                    else
+                        Log.d("RETURN CODE : ", response.code().toString()
+                                + " // body : "+  response.errorBody()?.string())
+                }
+            }
+        )
+    }
+
+    fun getListAppInfo(userToken: String, onResult: (List<AppInfo>?) -> Unit){
+        Log.d("USER TOKEN REQUEST", userToken)
+        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
+        retrofit.getListAppInfo("Bearer $userToken").enqueue(
+            object : Callback<List<AppInfo>> {
+                override fun onFailure(call: Call<List<AppInfo>>, t: Throwable) {
+                    Log.d("GET APP INFOS FAILURE", "Impossible to get app infos")
+                    Log.d("CAUSE", t.message)
+                }
+                override fun onResponse( call: Call<List<AppInfo>>, response: Response<List<AppInfo>>) {
+                    Log.d("GET APP INFO SUCCEEDED", "Maybe app infos are returned !")
+                    if (response.code() == 200){
+                        if(response.body() != null) {
+                            val addedUser : List<AppInfo> = response.body()!!
                             onResult(addedUser)
                         }
                     }

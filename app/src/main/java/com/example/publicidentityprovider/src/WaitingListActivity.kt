@@ -4,6 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.publicidentityprovider.R
+import com.example.publicidentityprovider.controller.RestApiService
+import com.example.publicidentityprovider.details.AppInfo
+import com.example.publicidentityprovider.details.UserInfo
+import com.google.gson.Gson
 
 class WaitingListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,9 +19,21 @@ class WaitingListActivity : AppCompatActivity() {
         // extract data from the intent
         val userToken = originIntent.getStringExtra("USER_TOKEN")!!
         Log.d("USER TOKEN", userToken)
+        getWaitingAppList(userToken)
     }
 
     private fun getWaitingAppList(userToken : String) {
+        val apiService = RestApiService()
 
+        apiService.getListAppInfo(userToken) {
+            if (it != null) {
+                val itJsonString = Gson().toJson(it)
+                Log.d("GET APP INFO SUCCEED", itJsonString.toString())
+                //var listAppData = Gson().fromJson(itJsonString, List<AppInfo::class.java>)
+                //displayUserInfo(userData, userToken)
+            } else {
+                Log.d("GET APP INFO FAILURE", "An error has occurred !")
+            }
+        }
     }
 }

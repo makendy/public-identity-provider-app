@@ -17,5 +17,5 @@ interface RestApi {
 
     @Headers("Content-Type: application/json")
     @GET("/auth/waiting")
-    fun getAppInfo(@Header("Authorization") userToken : String): Call<AppInfo>
+    fun getListAppInfo(@Header("Authorization") userToken : String): Call<List<AppInfo>>
 }

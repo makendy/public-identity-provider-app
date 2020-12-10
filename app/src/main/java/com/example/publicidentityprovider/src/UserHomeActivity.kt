@@ -16,11 +16,8 @@ class UserHomeActivity : AppCompatActivity() {
         // retrieve the intent that caused the activity to open
         val originIntent = intent
         // extract data from the intent
-        val jsonStringUserdata = originIntent.getStringExtra("USER_DATA")!!
-        Log.d("HOME USER ACTVT DATA : ", jsonStringUserdata)
-
-        var userData = Gson().fromJson(jsonStringUserdata, UserPostResponse::class.java)
-        Log.d("USER TOKEN", userData.userToken)
+        val userToken = originIntent.getStringExtra("USER_TOKEN")!!
+        Log.d("USER TOKEN", userToken)
     }
 
     //---> Prevent activity from going back to previous activities and quit app

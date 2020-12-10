@@ -34,4 +34,8 @@ class RestApiService {
                 }
         )
     }
+
+    fun getUserInfo(){
+
+    }
 }

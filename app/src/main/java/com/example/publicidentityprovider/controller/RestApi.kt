@@ -12,5 +12,5 @@ interface RestApi {
 
     @Headers("Content-Type: application/json")
     @GET("/users/info")
-    fun getUserInfo(@Header("Authorization") userToken : String?): Call<UserInfo>
+    fun getUserInfo(@Header("Authorization") userToken : String): Call<UserInfo>
 }

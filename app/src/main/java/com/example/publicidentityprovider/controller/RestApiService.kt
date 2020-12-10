@@ -32,7 +32,7 @@ class RestApiService {
         )
     }
 
-    fun getUserInfo(userToken: String?, onResult: (UserInfo?) -> Unit){
+    fun getUserInfo(userToken: String, onResult: (UserInfo?) -> Unit){
         Log.d("USER TOKEN REQUEST", userToken)
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
         retrofit.getUserInfo("Bearer $userToken").enqueue(

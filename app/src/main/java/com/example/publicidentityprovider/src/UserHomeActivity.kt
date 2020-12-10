@@ -6,13 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.publicidentityprovider.R
 import com.example.publicidentityprovider.controller.RestApiService
 import com.example.publicidentityprovider.details.UserInfo
-import com.example.publicidentityprovider.details.UserPostResponse
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class UserHomeActivity : AppCompatActivity() {
-    private val userToken : String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_home)
@@ -22,7 +19,7 @@ class UserHomeActivity : AppCompatActivity() {
         // extract data from the intent
         val userToken = originIntent.getStringExtra("USER_TOKEN")!!
         Log.d("USER TOKEN", userToken)
-        getUserInfoFromDatabase()
+        getUserInfoFromDatabase(userToken)
     }
 
     //---> Prevent activity from going back to previous activities and quit app
@@ -30,13 +27,14 @@ class UserHomeActivity : AppCompatActivity() {
         finishAffinity()
     }
 
-    private fun getUserInfoFromDatabase () {
+    private fun getUserInfoFromDatabase (userToken : String) {
         val apiService = RestApiService()
 
         apiService.getUserInfo(userToken) {
             if (it != null) {
                 val itJsonString = Gson().toJson(it)
                 Log.d("GET INFO SUCCEESSFUL", itJsonString.toString())
+                var userData = Gson().fromJson(itJsonString, UserInfo::class.java)
             } else {
                 Log.d("GET USER INFO FAILURE", "An error has occurred !")
             }

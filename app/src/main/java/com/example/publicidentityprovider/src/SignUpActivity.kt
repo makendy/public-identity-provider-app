@@ -161,16 +161,16 @@ class SignUpActivity : AppCompatActivity() {
             if (it != null) {
                 val itJsonString = Gson().toJson(it)
                 Log.d("POST USER SUCCEED", itJsonString.toString())
-                goToNextActivity(itJsonString)
+                goToNextActivity(it.userToken)
             } else {
                 Log.d("POST USER FAILURE", "An error has occurred !")
             }
         }
     }
     //---> Start next activity
-    private fun goToNextActivity(userCreated : String) {
+    private fun goToNextActivity(userToken : String) {
         val explicitIntent = Intent(this@SignUpActivity, UserHomeActivity::class.java)
-        explicitIntent.putExtra("USER_DATA", userCreated)
+        explicitIntent.putExtra("USER_TOKEN", userToken)
         startActivity(explicitIntent)
     }
 }

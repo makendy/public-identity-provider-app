@@ -41,6 +41,13 @@ class UserHomeActivity : AppCompatActivity() {
             explicitIntent.putExtra("USER_TOKEN", userToken)
             startActivity(explicitIntent)
         }
+
+        id_button_allowed_app.setOnClickListener {
+            val explicitIntent = Intent(this@UserHomeActivity,
+                                            AllowedListActivity::class.java)
+            explicitIntent.putExtra("USER_TOKEN", userToken)
+            startActivity(explicitIntent)
+        }
     }
     //----> get user's info from DB
     private fun getUserInfoFromDatabase (userToken : String) {

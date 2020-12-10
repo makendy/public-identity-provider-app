@@ -16,4 +16,8 @@ class WaitingListActivity : AppCompatActivity() {
         val userToken = originIntent.getStringExtra("USER_TOKEN")!!
         Log.d("USER TOKEN", userToken)
     }
+
+    private fun getWaitingAppList(userToken : String) {
+
+    }
 }

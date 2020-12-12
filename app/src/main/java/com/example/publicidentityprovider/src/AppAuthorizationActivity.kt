@@ -1,12 +1,12 @@
 package com.example.publicidentityprovider.src
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import com.example.publicidentityprovider.R
 import com.example.publicidentityprovider.controller.RestApiService
 import com.example.publicidentityprovider.details.AppAuthorization
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_app_authorization.*
 
 class AppAuthorizationActivity : AppCompatActivity() {
@@ -32,6 +32,11 @@ class AppAuthorizationActivity : AppCompatActivity() {
 
         id_button_auth.setOnClickListener {
             giveAuthorization(appAuthorization)
+            Toast.makeText(this@AppAuthorizationActivity, "Authorization is given",
+                    Toast.LENGTH_LONG).show()
+            //Thread.sleep(5000)
+            //goToNextActivity(userToken)
+
         }
     }
 
@@ -41,5 +46,13 @@ class AppAuthorizationActivity : AppCompatActivity() {
         apiService.postAuthorization(appAuthorization) {
             
         }
+    }
+
+    //---> Start next activity
+    private fun goToNextActivity(userToken : String) {
+        val explicitIntent = Intent(this@AppAuthorizationActivity,
+                                    UserHomeActivity::class.java)
+        explicitIntent.putExtra("USER_TOKEN", userToken)
+        startActivity(explicitIntent)
     }
 }

@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PublicIdentityProvider"
         android:usesCleartextTraffic="true">
-        <activity android:name=".src.AllowedListActivity"></activity>
+        <activity android:name=".src.AppAuthorizationActivity"></activity>
+        <activity android:name=".src.AllowedListActivity" />
         <activity android:name=".AllowedListActivity" />
         <activity android:name=".src.WaitingListActivity" />
         <activity android:name=".src.UserHomeActivity" />

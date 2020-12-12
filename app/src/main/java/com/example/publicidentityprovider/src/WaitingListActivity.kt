@@ -1,10 +1,10 @@
 package com.example.publicidentityprovider.src
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.publicidentityprovider.R
@@ -27,7 +27,7 @@ class WaitingListActivity : AppCompatActivity() {
         getWaitingAppList(userToken)
     }
 
-    private fun displayAppListInfo(listOfApp : List<AppInfo>) {
+    private fun displayAppListInfo(listOfApp : List<AppInfo>, userToken: String) {
         // display performance optimization when list widget size does not change
         RecyclerListApp.setHasFixedSize(true)
         // here we specify this is a standard vertical list
@@ -43,20 +43,20 @@ class WaitingListActivity : AppCompatActivity() {
             // we retrieve the row position from its tag
             val position = it.tag as Int
             val clickedItem = listOfApp[position]
-            // do stuff
-            Toast.makeText(
-                this@WaitingListActivity,
-                "Clicked " + clickedItem.appName,
-                Toast.LENGTH_SHORT)
-                .show()
 
             // Create an explicit intent
-            //val explicitIntent = Intent(this@MainActivity,
-              //  GameDetailsActivity::class.java)
+            val explicitIntent = Intent(this@WaitingListActivity,
+                                            AppAuthorizationActivity::class.java)
             // Insert extra data in the intent
-            //explicitIntent.putExtra("GAME_ID", clickedItem.id.toString())
+            explicitIntent.putExtra("AUTH_USER_CODE", clickedItem.userCode)
+            explicitIntent.putExtra("AUTH_USER_TOKEN", userToken)
+            explicitIntent.putExtra("APP_NAME", clickedItem.appName)
+            explicitIntent.putExtra("APP_DATE", clickedItem.date)
+            explicitIntent.putExtra("APP_SCOPES", clickedItem.scopes.toString()
+                                                        .replace("[", "")
+                                                        .replace("]", ""))
             // Start the other activity by sending the intent
-            //startActivity(explicitIntent)
+            startActivity(explicitIntent)
         }
         // attach an adapter and provide some data
         val recyclerAdapter = AppListAdapter(listOfApp,this@WaitingListActivity,
@@ -71,7 +71,7 @@ class WaitingListActivity : AppCompatActivity() {
             if (it != null) {
                 val itJsonString = Gson().toJson(it)
                 Log.d("GET APP INFO SUCCEED", itJsonString.toString())
-                displayAppListInfo(it)
+                displayAppListInfo(it, userToken)
             } else {
                 Log.d("GET APP INFO FAILURE", "An error has occurred !")
             }

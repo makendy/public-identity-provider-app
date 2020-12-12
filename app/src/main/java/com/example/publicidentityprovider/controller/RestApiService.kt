@@ -1,10 +1,8 @@
 package com.example.publicidentityprovider.controller
 
 import android.util.Log
-import com.example.publicidentityprovider.details.AppAuthorization
-import com.example.publicidentityprovider.details.AppInfo
-import com.example.publicidentityprovider.details.UserInfo
-import com.example.publicidentityprovider.details.UserPostResponse
+import androidx.annotation.IntegerRes
+import com.example.publicidentityprovider.details.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,20 +32,17 @@ class RestApiService {
         )
     }
 
-    fun postAuthorization(appAuthorization: AppAuthorization, onResult: (String?) -> Unit){
+    fun postAuthorization(appAuthorization: AppAuthorization, onResult: (Void) -> Unit){
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
         retrofit.postAuthorize(appAuthorization).enqueue(
-                object : Callback<AppAuthorization> {
-                    override fun onFailure(call: Call<AppAuthorization>, t: Throwable) {
+                object : Callback<Void> {
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
                         Log.d("POST AUTH FAILURE", "Impossible to post athorization")
                         Log.d("CAUSE", t.message)
                     }
-                    override fun onResponse(call: Call<AppAuthorization>, response: Response<AppAuthorization?>) {
+                    override fun onResponse(call: Call<Void>, response: Response<Void?>) {
                         Log.d("POST AUTH SUCCEEDED", "Maybe user is created !")
                         if (response.code() == 201){
-                            if(response.body() != null) {
-                                val addedUser = response.body()
-                            }
                         }
                         else
                             Log.d("RETURN CODE : ", response.code().toString()

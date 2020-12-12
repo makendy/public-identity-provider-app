@@ -16,4 +16,5 @@
     <string name="display_auth">DISPLAY AUTHORIZED APPS</string>
     <string name="display_waiting">DISPLAY WAITING AUTHORIZATION</string>
     <string name="textView">TextView</string>
+    <string name="give_auth">GIVE AUTHORIZATIONS</string>
 </resources>

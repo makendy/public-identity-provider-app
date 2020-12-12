@@ -14,7 +14,7 @@ interface RestApi {
 
     @Headers("Content-Type: application/json")
     @POST("/auth/authorize")
-    fun postAuthorize(@Body appAuthorization: AppAuthorization): Call<AppAuthorization>
+    fun postAuthorize(@Body appAuthorization: AppAuthorization): Call<Void>
 
     @Headers("Content-Type: application/json")
     @GET("/users/info")

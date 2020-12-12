@@ -1,6 +1,7 @@
 package com.example.publicidentityprovider.controller
 
 import android.util.Log
+import com.example.publicidentityprovider.details.AppAuthorization
 import com.example.publicidentityprovider.details.AppInfo
 import com.example.publicidentityprovider.details.UserInfo
 import com.example.publicidentityprovider.details.UserPostResponse
@@ -17,12 +18,35 @@ class RestApiService {
                         Log.d("POST USER FAILURE", "Impossible to create user")
                         Log.d("CAUSE", t.message)
                     }
-                    override fun onResponse( call: Call<UserPostResponse>, response: Response<UserPostResponse>) {
+                    override fun onResponse(call: Call<UserPostResponse>, response: Response<UserPostResponse>) {
                         Log.d("POST USER SUCCEEDED", "Maybe user is created !")
                         if (response.code() == 201){
                             if(response.body() != null) {
                                 val addedUser = response.body()
                                 onResult(addedUser)
+                            }
+                        }
+                        else
+                            Log.d("RETURN CODE : ", response.code().toString()
+                                    + " // body : "+  response.errorBody()?.string())
+                    }
+                }
+        )
+    }
+
+    fun postAuthorization(appAuthorization: AppAuthorization, onResult: (String?) -> Unit){
+        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
+        retrofit.postAuthorize(appAuthorization).enqueue(
+                object : Callback<AppAuthorization> {
+                    override fun onFailure(call: Call<AppAuthorization>, t: Throwable) {
+                        Log.d("POST AUTH FAILURE", "Impossible to post athorization")
+                        Log.d("CAUSE", t.message)
+                    }
+                    override fun onResponse(call: Call<AppAuthorization>, response: Response<AppAuthorization?>) {
+                        Log.d("POST AUTH SUCCEEDED", "Maybe user is created !")
+                        if (response.code() == 201){
+                            if(response.body() != null) {
+                                val addedUser = response.body()
                             }
                         }
                         else
@@ -42,7 +66,7 @@ class RestApiService {
                     Log.d("GET USER INFOS FAILURE", "Impossible to get user's infos")
                     Log.d("CAUSE", t.message)
                 }
-                override fun onResponse( call: Call<UserInfo>, response: Response<UserInfo>) {
+                override fun onResponse(call: Call<UserInfo>, response: Response<UserInfo>) {
                     Log.d("GET USER INFO SUCCEEDED", "Maybe user's infos are returned !")
                     if (response.code() == 200){
                         if(response.body() != null) {
